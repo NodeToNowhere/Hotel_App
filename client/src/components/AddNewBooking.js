@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { postBooking } from "./BookingsService";
+// import PropTypes from "prop-types";
 
-const AddNewBooking = ({ onAdd }) => {
+const AddNewBooking = ({ addBooking }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [checked_in, setChecked_in] = useState(false);
@@ -17,11 +19,15 @@ const AddNewBooking = ({ onAdd }) => {
       alert("Please enter an email");
       return;
     }
-    onAdd({ name, email, checked_in });
+    addBooking({ name, email, checked_in });
 
-    setName("");
-    setEmail("");
-    setChecked_in(false);
+    postBooking({ name, email, checked_in }).then((data) => {
+      addBooking(data); // This drove me mental - Eventually realised you can wrap the info into as an object and pass in too postBooking!!....
+
+      setName("");
+      setEmail("");
+      setChecked_in(false);
+    });
   };
 
   return (

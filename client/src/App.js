@@ -5,7 +5,6 @@ import BookingsList from "./components/BookingsList";
 import AddNewBooking from "./components/AddNewBooking";
 
 function App() {
-  const [showAddGuest, setShowAddGuest] = useState(false);
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
@@ -21,32 +20,33 @@ function App() {
   };
 
   const removeBooking = (id) => {
-    const temp = bookings.map((b) => b);
-    const indexToDel = temp.map((b) => b._id).indexOf(id);
-    console.log(indexToDel);
-
+    const temp = bookings.map((s) => s);
+    const indexToDel = temp.map((s) => s._id).indexOf(id);
     temp.splice(indexToDel, 1);
     setBookings(temp);
   };
 
-  const toggleCheckIn = (id) => { 
+  const toggleCheckIn = (id) => {
     setBookings(
-      bookings.map((booking) => 
-        booking._id === id ? {...booking, checked_in: !booking.checked_in}
-       : booking ) 
-    )
-    
-  }
-
-
+      bookings.map((booking) =>
+        booking._id === id
+          ? { ...booking, checked_in: !booking.checked_in }
+          : booking
+      )
+    );
+  };
 
   return (
     <div className="container">
-      <Header onAdd={addBooking} showAddGuest={showAddGuest} />
-      <AddNewBooking onAdd={addBooking}/>
+      <Header />
+      <AddNewBooking addBooking={addBooking} />
 
       {bookings.length > 0 ? (
-        <BookingsList bookings={bookings} onDelete={removeBooking} onToggle={toggleCheckIn} />
+        <BookingsList
+          bookings={bookings}
+          removeBooking={removeBooking}
+          onToggle={toggleCheckIn}
+        />
       ) : (
         "No Bookings to show"
       )}

@@ -1,13 +1,14 @@
 import Booking from "./Booking";
 
-const Bookings = ({ bookings, onDelete, onToggle }) => {
+const BookingList = ({ bookings, removeBooking, onToggle }) => {
+  // console.log(bookings[0]._id)
   return (
     <>
       {bookings.map((booking) => (
         <Booking
-          key={booking.id}
+          key={booking._id}
           booking={booking}
-          onDelete={onDelete}
+          removeBooking={removeBooking}
           onToggle={onToggle}
         />
       ))}
@@ -15,4 +16,4 @@ const Bookings = ({ bookings, onDelete, onToggle }) => {
   );
 };
 
-export default Bookings;
+export default BookingList;
