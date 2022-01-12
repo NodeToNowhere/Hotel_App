@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import { getBookings } from "./components/BookingsService";
 import BookingsList from "./components/BookingsList";
+import AddNewBooking from "./components/AddNewBooking";
 
 function App() {
-  const [showAddGuest, setShowAddGuest] = useState(true);
+  const [showAddGuest, setShowAddGuest] = useState(false);
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ function App() {
   return (
     <div className="container">
       <Header onAdd={addBooking} showAddGuest={showAddGuest} />
-      <addBooking />
+      <AddNewBooking />
 
       {bookings.length > 0 ? (
         <BookingsList bookings={bookings} onDelete={removeBooking} />

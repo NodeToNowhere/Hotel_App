@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const addBooking = ({ onAdd }) => {
+const AddNewBooking = ({ onAdd }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [checked_in, setChecked_in] = useState(false);
@@ -17,36 +17,35 @@ const addBooking = ({ onAdd }) => {
       alert("Please enter an email");
       return;
     }
-    onAdd({ name, email, checked_in})
+    onAdd({ name, email, checked_in });
 
-    setName('')
-    setEmail('')
-    setChecked_in(false)
+    setName("");
+    setEmail("");
+    setChecked_in(false);
   };
-};
 
-return (
+  return (
     <form className="add-form" onSubmit={onSubmit}>
       <div className="form-control">
-        <label>Task</label>
+        <label>Name</label>
         <input
           type="text"
-          placeholder="Add Task"
+          placeholder="Add Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       </div>
       <div className="form-control">
-        <label>Day & Time</label>
+        <label>Email</label>
         <input
           type="text"
-          placeholder="Add Day & Time"
+          placeholder="Add Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
       <div className="form-control form-control-check">
-        <label>Set Reminder</label>
+        <label>Is guest checked in?</label>
         <input
           type="checkbox"
           checked={checked_in}
@@ -60,4 +59,4 @@ return (
   );
 };
 
-export default addBooking;
+export default AddNewBooking;
