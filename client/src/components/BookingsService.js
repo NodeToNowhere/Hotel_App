@@ -9,12 +9,11 @@ export const postBooking = (payload) => {
     method: "POST",
     body: JSON.stringify(payload),
     headers: { "content-type": "application/json" },
-  })
-  .then(res => res.json());
+  }).then((res) => res.json());
 };
 
 export const deleteBooking = (id) => {
-    return fetch(baseURL + id, {
-        method: 'DELETE'
-    })
-}
+  return fetch(baseURL + id, {
+    method: "DELETE",
+  });
+};
