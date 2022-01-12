@@ -29,13 +29,24 @@ function App() {
     setBookings(temp);
   };
 
+  const toggleCheckIn = (id) => { 
+    setBookings(
+      bookings.map((booking) => 
+        booking._id === id ? {...booking, checked_in: !booking.checked_in}
+       : booking ) 
+    )
+    
+  }
+
+
+
   return (
     <div className="container">
       <Header onAdd={addBooking} showAddGuest={showAddGuest} />
-      <AddNewBooking />
+      <AddNewBooking onAdd={addBooking}/>
 
       {bookings.length > 0 ? (
-        <BookingsList bookings={bookings} onDelete={removeBooking} />
+        <BookingsList bookings={bookings} onDelete={removeBooking} onToggle={toggleCheckIn} />
       ) : (
         "No Bookings to show"
       )}
